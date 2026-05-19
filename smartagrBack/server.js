@@ -20,7 +20,7 @@ app.use('/api', vanRoutes);
 
 // Route de test
 app.get('/', (req, res) => {
-  res.json({ 
+  res.json({
     message: 'API Gestion des Vans - Bienvenue !',
     version: '1.0.0',
     endpoints: {
@@ -40,11 +40,11 @@ const startServer = async () => {
     // Tester la connexion à MySQL
     await sequelize.authenticate();
     console.log('✅ Connexion à MySQL réussie');
-    
+
     // Synchroniser les modèles (créer la table si elle n'existe pas)
     await sequelize.sync({ alter: true });
     console.log('✅ Tables synchronisées avec MySQL');
-    
+
     // Démarrer le serveur
     app.listen(PORT, () => {
       console.log(`\n🚀 Serveur démarré sur http://localhost:${PORT}`);

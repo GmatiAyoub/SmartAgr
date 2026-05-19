@@ -26,7 +26,7 @@ function App() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, []); //tableau vide car s execute une seule fois au montage
 
   const handleAddVan = (vanData) => {
     axios

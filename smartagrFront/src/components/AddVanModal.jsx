@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-
+//props de composants : isOpen control de la modal isOpen={true} ou {false}
+//onClose fonction pour fermer la modal 
+//onAdd fonction pour ajouter un van et mettre a jour la liste des vans 
 function AddVanModal({ isOpen, onClose, onAdd }) {
   const [formData, setFormData] = useState({
     nom: '',
@@ -11,7 +13,8 @@ function AddVanModal({ isOpen, onClose, onAdd }) {
   const zones = ['Nord', 'Sud', 'Est', 'Ouest', 'Centre'];
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); //alors on va empecher le rechargement de la page
+    //validation des champs 
     if (!formData.nom.trim()) {
       alert('Le nom du van est requis');
       return;
@@ -20,17 +23,17 @@ function AddVanModal({ isOpen, onClose, onAdd }) {
       alert('Le nombre de places doit être au moins 1');
       return;
     }
-    
+    //appel de la fonction onAdd
     onAdd({
       nom: formData.nom.trim(),
       zone: formData.zone,
       places: parseInt(formData.places),
       statut: formData.statut
     });
-    
+    //renitialiser le formulaire
     setFormData({ nom: '', zone: 'Nord', places: '', statut: 'Ouvert' });
   };
-
+  //condition pour afficher la modal
   if (!isOpen) return null;
 
   return (
@@ -40,7 +43,7 @@ function AddVanModal({ isOpen, onClose, onAdd }) {
           <h2 className="text-xl font-semibold text-gray-800">➕ Ajouter un van</h2>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-2xl">×</button>
         </div>
-        
+
         <form onSubmit={handleSubmit}>
           <div className="px-6 py-4 space-y-4">
             <div>
@@ -50,11 +53,11 @@ function AddVanModal({ isOpen, onClose, onAdd }) {
                 value={formData.nom}
                 onChange={(e) => setFormData({ ...formData, nom: e.target.value })}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="Ex: Van Alpha, Renault Master..."
+                placeholder="Nom du van"
                 required
               />
             </div>
-        
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Zone d'activité *</label>
               <select
@@ -76,12 +79,12 @@ function AddVanModal({ isOpen, onClose, onAdd }) {
                 value={formData.places}
                 onChange={(e) => setFormData({ ...formData, places: e.target.value })}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="Ex: 5, 8, 12..."
+                placeholder="Nombre de places"
                 min="1"
                 required
               />
             </div>
-            
+
             {/* Statut */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Statut initial</label>
@@ -95,7 +98,7 @@ function AddVanModal({ isOpen, onClose, onAdd }) {
               </select>
             </div>
           </div>
-          
+
           <div className="flex justify-end gap-3 px-6 py-4 bg-gray-50 rounded-b-lg">
             <button type="button" onClick={onClose} className="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 transition">
               Annuler
