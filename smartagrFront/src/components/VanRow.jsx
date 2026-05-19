@@ -14,7 +14,6 @@ function VanRow({ van, onToggleStatus, onEdit, onDelete }) {
     );
     };
 
-  // Couleur de zone
     const getZoneBadge = (zone) => {
     const colors = {
         Nord: "bg-blue-100 text-blue-800",
