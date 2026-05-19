@@ -11,9 +11,9 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors());//autorise les requettes...
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));//// Convertir les données de formulaire en objet JavaScript
 
 // Routes
 app.use('/api', vanRoutes);
