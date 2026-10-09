@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import VanTable from './components/VanTable';
 import AddVanModal from './components/AddVanModal';
@@ -26,7 +26,7 @@ function App() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, []); //tableau vide car s execute une seule fois au montage
 
   const handleAddVan = (vanData) => {
     axios
